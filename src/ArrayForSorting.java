@@ -1,8 +1,8 @@
-//JavaPractice_ArraySorting
-//version:1.0r
+//JavaPractice2_ArraySorting
+//version:1.0.1r
 //Main.java
 //Book Darksteel
-//完成日期：2024年2月15日
+//完成日期：2024年3月3日
 
 public class ArrayForSorting {
     private int array_length;

@@ -1,15 +1,16 @@
-//JavaPractice_ArraySorting
-//version:1.0r
+//JavaPractice2_ArraySorting
+//version:1.0.1r
 //Main.java
 //Book Darksteel
-//完成日期：2024年2月15日
+//完成日期：2024年3月3日
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         //输出欢迎信息
-        System.out.println("-----\nJavaPractice_ArraySorting\n-----\nversion:1.0r\n");
+        System.out.println("-----\nJavaPractice_ArraySorting\n-----\nversion:1.0.1\n");
         System.out.println("欢迎使用\n");
         //关于设置模式
         boolean show_details=true;
@@ -40,9 +41,9 @@ public class Main {
                     System.out.println("设置修改成功\n");
                 } else if (settings_control_str.startsWith("a")) {
                     System.out.println("关于JavaPractice_ArraySorting");
-                    System.out.println("版本：1.0r");
+                    System.out.println("版本：1.0.1r");
                     System.out.println("开发者：Book Darksteel");
-                    System.out.println("开发完成日期：2024年2月15日");
+                    System.out.println("开发完成日期：2024年3月3日");
                     System.out.println("本程序实现对一维整数数组进行排序的功能。");
                     System.out.println("本程序是Book Darksteel出于练习Java编程技术的目的开发的程序。");
                     System.out.println();
@@ -55,22 +56,39 @@ public class Main {
         //用户输入数组长度
         int array_length=0;
         while(true){
-            System.out.println("请输入您希望进行排序的数组的长度：");
-            array_length=sc.nextInt();
-            if(array_length>0){
-                break;
+            try{
+                Scanner sc_array_length=new Scanner(System.in);
+                System.out.println("请输入您希望进行排序的数组的长度：");
+                array_length=sc_array_length.nextInt();
+                if(array_length>0){
+                    break;
+                }
+                else{
+                    throw new InputMismatchException("不满足输入的整数应大于0的要求。Not meeting the requirement that the input integer should be greater than 0.");
+                }
             }
-            System.out.println("本程序无法理解您的输入，请您重新输入。");
-            System.out.println("注意：您应该输入大于0的整数。");
+            catch (InputMismatchException e){
+                System.out.println("本程序无法理解您的输入，请您重新输入。");
+                System.out.println("注意：您应该输入大于0的整数。");
+            }
         }
         //用户输入数组
         int[] array =new int[array_length];
         System.out.println("\n请输入数组\n(本程序仅支持数组元素为整数的数组，数组中的每个值应为整数。)");
         for(int i=0;i<array_length;++i){
-            System.out.println("请输入数组的第"+(i+1)+"个元素:");
-            array[i]=sc.nextInt();
+            while (true){
+                try{
+                    Scanner sc_array_element=new Scanner(System.in);
+                    System.out.println("请输入数组的第"+(i+1)+"个元素:");
+                    array[i]=sc_array_element.nextInt();
+                    break;
+                }
+                catch (InputMismatchException e){
+                    System.out.println("本程序无法理解您的输入，请您重新输入。");
+                    System.out.println("注意：您应该输入整数。");
+                }
+            }
         }
-        sc.nextLine();
         System.out.println("数组输入完成\n");
 
         //创建用于排序的数组对象
